@@ -1,0 +1,342 @@
+:root{
+  --mh-glass:rgba(255,255,255,.92);--mh-glass-2:#fff;--mh-glass-soft:rgba(95,107,58,.06);
+  --mh-border:rgba(184,144,58,.35);--mh-border-2:rgba(184,144,58,.55);--mh-blur:none;
+  --mh-text:#2F3519;--mh-text-dim:#6D7352;--mh-green:#6B7A3E;--mh-green-soft:rgba(107,122,62,.15);
+  --mh-shadow:0 14px 30px -20px rgba(95,107,58,.55)}
+
+/* ⚠️ إصلاح: عناصر hidden كانت بتفضل ظاهرة بسبب display:flex في قواعد تانية */
+[hidden]{ display:none !important; }
+
+/* ⚠️ إصلاح: كل بطاقات هذا القسم كانت تظهر ثم تختفي (opacity:0) لأن نظام
+   "الظهور عند التمرير" العام في الموقع (.section-card / .revealed) لم يكن
+   يعمل على هذه الصفحة تحديدًا. نجعلها ظاهرة دائمًا بغض النظر عن ذلك. */
+#sections-grid .section-card{ opacity:1 !important; transform:none !important; }
+
+.mh-wrap{ max-width:1000px; margin:0 auto; padding:0 20px 70px; }
+
+/* ---------- بطاقات الأقسام الست (زجاج شفاف فوق خلفية الفضاء) ---------- */
+#sections-grid .section-card{
+  background:var(--mh-glass) !important;
+  -webkit-backdrop-filter:var(--mh-blur);
+  backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border) !important;
+  box-shadow:var(--mh-shadow) !important;
+}
+#sections-grid .section-card:hover{
+  border-color:var(--mh-border-2) !important;
+  box-shadow:0 16px 44px rgba(0,0,0,.45), 0 0 0 1px rgba(184,144,58,.25) !important;
+}
+#sections-grid .section-card .section-img{
+  background:linear-gradient(135deg, rgba(184,144,58,.25), rgba(27,75,140,.35));
+  color:var(--gold);
+}
+#sections-grid .section-card .section-body h3{ color:var(--mh-text); }
+#sections-grid .section-card .section-body p{ color:var(--mh-text-dim); }
+
+/* ---------- لوحات الأقسام ---------- */
+.mh-panel{ padding-top:10px; }
+.mh-panel-head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:18px; gap:10px; flex-wrap:wrap;
+}
+.mh-panel-head h2{ margin:0; color:var(--mh-text); font-size:1.4rem; display:flex; align-items:center; gap:10px; text-shadow:0 2px 10px rgba(0,0,0,.4); }
+.mh-panel-head h2 i{ color:var(--gold); }
+.mh-muted{ color:var(--mh-text-dim); font-size:.9rem; }
+
+/* ---------- أزرار موحّدة بشكل "زجاجي/فضائي" (تحسين شكل الأزرار) ---------- */
+.mh-btn-glass, .mh-btn-gold, .mh-btn-green, .done-btn{
+  font-family:inherit; cursor:pointer; border-radius:24px; font-size:.9rem;
+  padding:10px 20px; transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  display:inline-flex; align-items:center; gap:8px; justify-content:center;
+}
+.mh-btn-glass{
+  background:rgba(95,107,58,.08); border:1px solid var(--mh-border-2); color:var(--mh-text);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+}
+.mh-btn-glass:hover{ background:rgba(95,107,58,.16); border-color:var(--gold); }
+.mh-btn-gold{
+  background:linear-gradient(135deg, var(--gold), #E3C98A); color:#2F2410; border:none; font-weight:700;
+  box-shadow:0 6px 22px rgba(184,144,58,.35), inset 0 0 0 1px rgba(95,107,58,.12);
+}
+.mh-btn-gold:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(184,144,58,.5); }
+.mh-btn-green, .done-btn{
+  background:linear-gradient(135deg, var(--mh-green), #5F6B3A); color:#fff; border:none; font-weight:700;
+  box-shadow:0 6px 20px rgba(52,211,153,.3);
+}
+.mh-btn-green:hover, .done-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(52,211,153,.45); }
+.mh-btn-glass:disabled, .mh-btn-green:disabled, .mh-btn-gold:disabled{ opacity:.4; cursor:not-allowed; transform:none; }
+
+/* ---------- قائمة السور ---------- */
+.mh-last-position{
+  background:var(--mh-glass-soft);
+  border:1px dashed var(--gold);
+  color:var(--mh-text);
+  padding:10px 14px;
+  border-radius:var(--radius-sm);
+  margin-bottom:8px;
+  font-size:.92rem;
+}
+.mh-goal-row{ display:flex; align-items:center; gap:10px; margin:10px 0 18px; font-size:.9rem; color:var(--mh-text-dim); flex-wrap:wrap; }
+.mh-goal-row select{
+  padding:6px 10px; border-radius:8px; border:1px solid var(--mh-border-2);
+  background:var(--mh-glass-2); color:var(--mh-text);
+}
+.mh-goal-row select option{ color:#111; }
+
+.mh-surah-list{
+  background:var(--mh-glass);
+  -webkit-backdrop-filter:var(--mh-blur);
+  backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border);
+  border-radius:var(--radius);
+  box-shadow:var(--mh-shadow);
+  overflow:hidden;
+  max-height:70vh;
+  overflow-y:auto;
+}
+.surah-item{
+  width:100%;
+  display:flex; align-items:center; justify-content:space-between;
+  background:none; border:none; border-bottom:1px solid rgba(95,107,58,.08);
+  padding:14px 18px; cursor:pointer; text-align:right;
+  font-family:inherit; color:var(--mh-text);
+  border-right:3px solid transparent;
+  transition:background .2s ease;
+}
+.surah-item:last-child{ border-bottom:none; }
+.surah-item:hover{ background:rgba(95,107,58,.06); }
+.surah-name{ font-weight:700; color:var(--mh-text); }
+.surah-meta{ color:var(--mh-text-dim); font-size:.84rem; }
+.surah-item.surah-started{ border-right-color:var(--gold); }
+.surah-item.surah-done{
+  border-right-color:var(--mh-green);
+  background:var(--mh-green-soft);
+}
+.surah-item.surah-done .surah-name::after{
+  content:" ✓";
+  color:var(--mh-green);
+  font-weight:800;
+}
+.empty-state{ padding:26px; text-align:center; color:var(--mh-text-dim); }
+
+/* ---------- عارض الآيات المضمّن (احتياطي) ---------- */
+.mh-ayah-viewer{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius); box-shadow:var(--mh-shadow);
+  padding:24px; text-align:center; margin-top:16px;
+}
+#current-surah-name{ color:var(--mh-text); font-weight:700; margin-bottom:14px; font-size:1.1rem; }
+#ayah-text{
+  font-family:"Amiri Quran","Amiri",serif;
+  font-size:1.7rem; line-height:2.3; color:var(--mh-text); margin-bottom:10px;
+}
+#ayah-number{ color:var(--gold); font-size:.9rem; margin-bottom:16px; display:block; }
+.mh-ayah-nav{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-top:14px; }
+
+/* ---------- نافذة "استماع أم قراءة" ---------- */
+.mh-modal-overlay{
+  position:fixed; inset:0; background:rgba(4,10,22,.65);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center;
+  z-index:2100; padding:20px;
+}
+.mh-choice-card{
+  background:var(--mh-glass-2); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border-2);
+  border-radius:var(--radius); padding:28px 24px;
+  max-width:380px; width:100%; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.mh-choice-card h3{ margin:0 0 2px; color:var(--mh-text); }
+.mh-choice-actions{ display:flex; gap:10px; margin:18px 0 16px; }
+.mh-choice-actions button{
+  flex:1; padding:18px 8px; border-radius:var(--radius-sm); border:1px solid var(--mh-border-2);
+  background:rgba(95,107,58,.06); cursor:pointer; font-size:.95rem; font-weight:700;
+  display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--mh-text);
+  transition:.2s;
+}
+.mh-choice-actions button i{ font-size:1.5rem; }
+#quranChoiceListenBtn{ border-color:var(--primary-light); }
+#quranChoiceListenBtn:hover{ background:rgba(46,107,184,.25); }
+#quranChoiceReadBtn{ border-color:var(--gold); }
+#quranChoiceReadBtn:hover{ background:rgba(184,144,58,.18); }
+.mh-link-btn{ background:none; border:none; color:var(--mh-text-dim); cursor:pointer; font-size:.85rem; text-decoration:underline; }
+
+/* ---------- شاشة القراءة/الاستماع بملء الشاشة ---------- */
+.mh-fs-reader{
+  position:fixed; inset:0; z-index:2200;
+  display:flex; flex-direction:column;
+  background:
+    radial-gradient(650px 480px at 10% 0%, rgba(27,75,140,.35), transparent 60%),
+    radial-gradient(600px 500px at 95% 100%, rgba(184,144,58,.2), transparent 60%),
+    linear-gradient(160deg, #2F3519, #4A5530 60%, #7C8A4B);
+}
+.mh-fs-toolbar{
+  background:rgba(6,14,30,.65); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  color:#fff; border-bottom:1px solid var(--mh-border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; gap:10px; flex-wrap:wrap;
+}
+.mh-fs-toolbar #quranFsSurahName{ font-weight:700; }
+.mh-fs-controls{ display:flex; gap:8px; align-items:center; }
+.mh-fs-controls button{
+  background:rgba(255,255,255,.1); border:1px solid var(--mh-border-2); color:#fff;
+  padding:9px 14px; border-radius:20px; cursor:pointer; font-size:.9rem;
+}
+.mh-fs-controls button:hover{ background:rgba(255,255,255,.2); }
+.mh-fs-save{ background:linear-gradient(135deg, var(--mh-green), #1f9d76) !important; border-color:transparent !important; color:#062018 !important; font-weight:700; }
+.mh-fs-save:hover{ filter:brightness(1.08); }
+
+.mh-fs-body{ flex:1; overflow-y:auto; padding:32px 18px 60px; }
+.quran-fs-page{
+  max-width:700px; margin:0 auto;
+  font-family:"Amiri Quran","Amiri",serif;
+  font-size:1.9rem; line-height:2.6; text-align:justify; text-align-last:center;
+  color:#F7F2E4;
+}
+.quran-fs-ayah{ display:inline; }
+.quran-fs-ayah-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:1.6em; height:1.6em; margin:0 4px;
+  border:1.5px solid var(--gold); border-radius:50%;
+  font-family:var(--font-main);
+  font-size:.55em; color:var(--gold); vertical-align:middle;
+}
+.mh-fs-nav{
+  position:sticky; bottom:0; background:rgba(6,14,30,.65);
+  -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border-top:1px solid var(--mh-border);
+  display:flex; justify-content:center; gap:10px; padding:12px;
+}
+.mh-fs-nav button{
+  background:rgba(255,255,255,.08); border:1px solid var(--mh-border-2); color:#fff;
+  padding:9px 18px; border-radius:20px; cursor:pointer;
+}
+.mh-fs-nav button:disabled{ opacity:.35; cursor:not-allowed; }
+
+/* ---------- الأذكار ---------- */
+.mh-athkar-cats{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.athkar-cat{
+  background:rgba(95,107,58,.07); border:1px solid var(--mh-border-2); padding:7px 16px; border-radius:20px;
+  cursor:pointer; font-size:.86rem; color:var(--mh-text); font-family:inherit;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.athkar-cat.active{ background:var(--gold); color:#2F2410; border-color:var(--gold); font-weight:700; }
+.mh-group-progress{ color:var(--mh-text-dim); font-size:.88rem; margin-bottom:10px; }
+#athkar-list{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius);
+  padding:6px; box-shadow:var(--mh-shadow);
+}
+.athkar-item{
+  background:rgba(95,107,58,.03); border:1px solid rgba(95,107,58,.08); border-radius:var(--radius-sm);
+  padding:16px 18px; margin:8px; box-shadow:none;
+}
+.athkar-item.completed{ border-color:var(--mh-green); background:var(--mh-green-soft); }
+.athkar-text{ font-family:"Amiri Quran","Amiri",serif; font-size:1.15rem; margin-bottom:10px; color:var(--mh-text); }
+.athkar-controls{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.counter-group{ display:flex; align-items:center; gap:8px; }
+.counter-btn{
+  width:32px; height:32px; border-radius:50%; border:1px solid var(--mh-border-2);
+  background:rgba(95,107,58,.08); color:var(--mh-text); cursor:pointer; font-size:1rem;
+}
+.counter-btn:hover{ background:rgba(95,107,58,.16); }
+.counter-value{ font-weight:700; color:var(--mh-text); min-width:1.5em; text-align:center; display:inline-block; }
+
+/* ---------- الورد اليومي ---------- */
+.mh-progress-track{ height:10px; background:rgba(95,107,58,.1); border-radius:8px; overflow:hidden; margin-bottom:8px; }
+.mh-progress-fill{ height:100%; background:linear-gradient(90deg, var(--mh-green), #5F6B3A); border-radius:8px; transition:width .3s ease; }
+.mh-tasks-list{
+  list-style:none; padding:6px; margin:14px 0 0;
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius); box-shadow:var(--mh-shadow);
+}
+.task-item{
+  display:flex; align-items:center; gap:12px; background:rgba(95,107,58,.03); border:1px solid rgba(95,107,58,.08);
+  border-radius:var(--radius-sm); padding:14px 18px; margin:8px; cursor:pointer;
+  box-shadow:none; transition:background .2s ease;
+}
+.task-item:hover{ background:rgba(95,107,58,.07); }
+.task-item.completed{ background:var(--mh-green-soft); border-color:var(--mh-green); cursor:default; }
+.task-check{
+  width:26px; height:26px; border-radius:50%; border:2px solid var(--mh-border-2);
+  display:flex; align-items:center; justify-content:center; color:var(--mh-green); font-weight:800; flex-shrink:0;
+}
+.task-info{ flex:1; }
+.task-title{ font-weight:700; color:var(--mh-text); }
+.task-points{ color:var(--mh-text-dim); font-size:.82rem; }
+
+/* ---------- مواقيت الصلاة ---------- */
+.mh-next-prayer{ text-align:center; margin-bottom:16px; }
+.mh-next-prayer #countdown{ font-size:1.7rem; font-weight:800; color:var(--mh-text); text-shadow:0 2px 12px rgba(0,0,0,.4); }
+.mh-next-prayer #next-prayer-name{ color:var(--gold); }
+.mh-prayer-times{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius); box-shadow:var(--mh-shadow);
+  overflow:hidden; margin-bottom:20px;
+}
+.prayer-row{ display:flex; justify-content:space-between; padding:13px 18px; border-bottom:1px solid rgba(95,107,58,.08); color:var(--mh-text); }
+.prayer-row:last-child{ border-bottom:none; }
+.prayer-row.next{ background:rgba(184,144,58,.14); font-weight:700; color:var(--gold); }
+.prayer-time{ color:var(--mh-text-dim); }
+.prayer-row.next .prayer-time{ color:var(--gold); }
+.mh-settings-card{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius); box-shadow:var(--mh-shadow); padding:22px;
+}
+.mh-settings-card .form-group label{ color:var(--mh-text-dim); }
+.mh-settings-card .form-group input,
+.mh-settings-card .form-group select{
+  background:rgba(95,107,58,.06); border:1px solid var(--mh-border-2); color:var(--mh-text);
+}
+.mh-settings-card .form-group input:focus,
+.mh-settings-card .form-group select:focus{ border-color:var(--gold); background:rgba(95,107,58,.1); }
+.mh-check-row{ display:flex; align-items:center; gap:8px; margin-top:12px; }
+.mh-check-row label{ margin:0; font-weight:600; color:var(--mh-text); }
+
+/* ---------- التقدم ---------- */
+.mh-stats-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+.mh-stat-box{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius-sm); box-shadow:var(--mh-shadow);
+  padding:18px; text-align:center;
+}
+.mh-stat-value{ font-size:1.35rem; font-weight:800; color:var(--gold); display:block; }
+.mh-stat-label{ color:var(--mh-text-dim); font-size:.82rem; }
+
+/* ---------- الإنجازات ---------- */
+.mh-achievements-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; }
+.achievement-card{
+  background:var(--mh-glass); -webkit-backdrop-filter:var(--mh-blur); backdrop-filter:var(--mh-blur);
+  border:1px solid var(--mh-border); border-radius:var(--radius-sm); box-shadow:var(--mh-shadow);
+  padding:20px; text-align:center; opacity:.4;
+}
+.achievement-card.unlocked{ opacity:1; border-color:var(--gold); background:rgba(184,144,58,.14); }
+.ach-icon{ font-size:1.8rem; display:block; margin-bottom:6px; }
+.ach-title{ font-weight:700; color:var(--mh-text); font-size:.92rem; }
+.ach-desc{ color:var(--mh-text-dim); font-size:.78rem; }
+
+/* ---------- شاشة الأذان ---------- */
+.mh-adhan-fs{
+  position:fixed; inset:0; z-index:2300; color:#fff;
+  background:linear-gradient(160deg, #2F3519, #4A5530 60%, #7C8A4B);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
+}
+.adhan-fs-line{ opacity:.3; font-size:1.3rem; margin:6px 0; transition:opacity .4s ease; }
+.adhan-fs-line.active{ opacity:1; color:var(--gold); }
+.mh-adhan-close{
+  margin-top:20px; background:rgba(255,255,255,.12); border:1px solid var(--mh-border-2);
+  color:#fff; padding:9px 22px; border-radius:20px; cursor:pointer; font-family:inherit; font-size:.95rem;
+}
+.mh-adhan-close:hover{ background:rgba(255,255,255,.22); }
+
+@media (max-width:560px){
+  #ayah-text{ font-size:1.35rem; }
+  .quran-fs-page{ font-size:1.5rem; line-height:2.3; }
+  .mh-choice-actions{ flex-direction:column; }
+}
+
+/* الأداء على الجوال: إلغاء الزجاج الضبابي (backdrop-filter) عن العناصر الكثيرة العدد،
+   نفس منطق الموقع الأصلي، مع الإبقاء على الشفافية والحدود لنفس الإحساس البصري */
+@media (max-width:768px){
+  .surah-item, .task-item, .athkar-item{ -webkit-backdrop-filter:none; backdrop-filter:none; }
+}

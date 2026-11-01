@@ -1,0 +1,17 @@
+/* مكوّنات الصفحات الداخلية (الصحة النفسية، الحالات، اللعبة) */
+:root{--font-main:'IBM Plex Sans Arabic',system-ui,sans-serif;--radius:20px;--radius-sm:12px;--primary-light:#7C8A4B}
+.breadcrumb{max-width:1060px;margin:18px auto 0;padding:0 20px;color:var(--muted);font-size:.92rem}.breadcrumb a{color:var(--gold);font-weight:600}
+.page-hero{text-align:center;padding:60px 20px 24px;background:radial-gradient(900px 300px at 80% -20%,var(--pink),transparent 60%),var(--beige)}
+.page-hero h1{font-size:clamp(2rem,6vw,3.2rem)}.page-hero h1 i{color:var(--gold);margin-inline-end:8px}.page-hero p{color:var(--muted);max-width:40em;margin:8px auto 0}
+.mh-wrap{max-width:1060px;margin:0 auto;padding:28px 20px 80px}
+.sections-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.section-card{display:flex;align-items:center;gap:16px;padding:20px;border-radius:22px;background:#fff;border:1.5px solid var(--gold-soft);cursor:pointer;transition:.3s}
+.section-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 30px -22px var(--olive)}
+.section-img{flex:none;width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:1.5rem;background:var(--pink);color:var(--olive)}
+.section-card:nth-child(even) .section-img{background:var(--gold-soft)}
+.section-body h3{font-family:'Aref Ruqaa',serif;font-size:1.3rem;margin:0}.section-body p{margin:2px 0 0;color:var(--muted);font-size:.93rem;line-height:1.6}
+.toast{position:fixed;inset-inline:16px;bottom:90px;margin:auto;max-width:360px;padding:12px 18px;border-radius:16px;background:var(--olive);color:#fff;text-align:center;z-index:200;opacity:0;pointer-events:none;transition:.3s}
+.toast.show,.toast.active,.toast.visible{opacity:1}
+.form-group{margin:10px 0}.form-group label{display:block;margin-bottom:4px;font-weight:600}
+select,input[type=text],input[type=time],input[type=number]{font-family:inherit}
+.backbar{max-width:1060px;margin:16px auto 0;padding:0 20px}
